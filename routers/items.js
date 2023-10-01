@@ -55,6 +55,21 @@ router.put('/edit/:id', async (req, res, next) => {
     }
 })
 
+router.put('/edit_/', async (req, res, next) => {
+    try {
+        const { itemID } = req.query;
+        const { status } = req.body
+        const data = await Item.findOne({itemID}).updateOne({
+            $set: {
+                status: status,
+            }
+        })
+        res.json(data)
+    } catch (err) {
+        next(err)
+    }
+})
+
 router.delete('/delete/:id', async (req, res, next) => {
     try {
         const id = req.params.id
