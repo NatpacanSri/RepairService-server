@@ -43,13 +43,13 @@ router.post('/login', async (req, res) => {
 
     if (!user) {
         return res.status(404).send({
-            message: 'user not found'
+            message: 'ไม่พบผู้ใช้งาน'
         })
     }
 
     if (!await bcrypt.compare(req.body.password, user.password)) {
         return res.status(400).send({
-            message: 'invalid credentials'
+            message: 'รหัสผ่านผิด'
         })
     }
 
@@ -61,7 +61,7 @@ router.post('/login', async (req, res) => {
     })
 
     res.send({
-        message: 'success'
+        message: 'เข้าสู่ระบบสำเร็จ'
     })
 })
 
